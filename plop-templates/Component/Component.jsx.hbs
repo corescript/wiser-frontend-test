@@ -1,0 +1,22 @@
+import PropTypes from 'prop-types';
+import styles from './{{pascalCase name}}.module.scss';
+
+const {{pascalCase name}} = props => {
+  const { Tag='div', variant, className } = props;
+  return (
+    <Tag className={`${styles.{{pascalCase name}} } ${styles[`{{pascalCase name}}__${variant}`]} ${className}`}>
+    </Tag>
+  );
+};
+
+{{pascalCase name}}.defaultProps = {
+  variant: 'default',
+  className: '',
+};
+
+{{pascalCase name}}.propTypes = {
+  variant: PropTypes.string,
+  className: PropTypes.string,
+};
+
+export default {{pascalCase name}};
