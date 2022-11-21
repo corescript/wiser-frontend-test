@@ -1,0 +1,23 @@
+@use "styles/shared" as *;
+
+.Navbar {
+  width: 100%;
+  padding: 20px 0px;
+  :global {
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: $white;
+    }
+    .link {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+}
+
+.Navbar__default {
+  background-color: $dark;
+  :global {
+  }
+}
