@@ -4,7 +4,7 @@
 
 Clone the project to your local directory.
 
-Create an `env.local` file with below info
+Create an `.env.local` file with below info
 
 ```
 REACT_APP_NEWS_API_KEY= <your-news-api-key>
