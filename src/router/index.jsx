@@ -31,11 +31,6 @@ const routes = [
     component: Search,
     layout: MainLayout,
   },
-  {
-    path: "/news/:id",
-    component: React.lazy(() => import("pages/NewsDetail")),
-    layout: MainLayout,
-  },
 ];
 
 const Element = ({ component, layout, privateRoute, publicRoute }) => {

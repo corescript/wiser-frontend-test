@@ -1,11 +1,17 @@
-import Card from "components/generic/Card";
+import Card, { CardLoader } from "components/generic/Card";
 import PropTypes from "prop-types";
 import styles from "./NewsItem.module.scss";
+
+export const NewsItemLoader = CardLoader;
 
 const NewsItem = (props) => {
   const { Tag = "div", variant, className } = props;
 
   const news = props.news;
+
+  const handleNewsClick = () => {
+    window.open(news.url);
+  };
 
   return (
     <Tag
@@ -14,9 +20,11 @@ const NewsItem = (props) => {
       } ${className}`}
     >
       <Card
+        className="card"
         title={news.title}
         image={news.urlToImage}
         description={news.description}
+        onClick={handleNewsClick}
       />
     </Tag>
   );

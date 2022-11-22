@@ -2,6 +2,14 @@
 
 .NewsItem {
   :global {
+    .card {
+      @include device(phone) {
+        display: block;
+        .left{
+          min-height: 300px;
+        }
+      }
+    }
   }
 }
 

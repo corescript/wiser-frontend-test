@@ -4,14 +4,40 @@
   width: 100%;
   padding: 20px 0px;
   :global {
-    .logo {
-      font-size: 22px;
-      font-weight: 700;
-      color: $white;
-    }
-    .link {
-      color: $white;
-      text-decoration: none;
+    .nav-content {
+      display: flex;
+
+      .logo {
+        font-size: 22px;
+        font-weight: 700;
+        color: $white;
+        a {
+          color: $white;
+          text-decoration: none;
+        }
+      }
+      .links {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        margin-left: 40px;
+        align-items: center;
+        .link {
+          margin: 0px 15px;
+          &:first-child {
+            margin-left: 0 !important;
+          }
+          &:last-child {
+            margin-right: 0 !important;
+          }
+          a {
+            color: $white;
+            text-decoration: none;
+            padding: 5px;
+          }
+        }
+      }
     }
   }
 }

@@ -11,18 +11,20 @@ const Navbar = (props) => {
       } ${className}`}
     >
       <div className="container">
-        <div className="logo">
-          <NavLink className={"link"} to={"/"}>
-            Wi News
-          </NavLink>
-        </div>
-        <div className="links">
-          <NavLink className={"link"} to={"/"}>
-            Home
-          </NavLink>
-          <NavLink className={"link"} to={"/search"}>
-            Search
-          </NavLink>
+        <div className="nav-content">
+          <div className="logo">
+            <NavLink className={"link"} to={"/"}>
+              Wi News
+            </NavLink>
+          </div>
+          <ul className="links">
+            <li className={"link"}>
+              <NavLink to={"/"}>Home</NavLink>
+            </li>
+            <li className={"link"}>
+              <NavLink to={"/search"}>Search</NavLink>
+            </li>
+          </ul>
         </div>
       </div>
     </Tag>

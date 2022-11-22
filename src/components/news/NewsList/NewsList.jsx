@@ -2,17 +2,22 @@ import TextInput from "components/generic/TextInput";
 import useNews from "features/news/useNews";
 import PropTypes from "prop-types";
 import { useCallback, useEffect, useState } from "react";
-import NewsItem from "../NewsItem";
+import NewsItem, { NewsItemLoader } from "../NewsItem";
 import styles from "./NewsList.module.scss";
 import debounce from "lodash.debounce";
+import Pagination from "components/generic/Pagination";
 
 const NewsList = (props) => {
   const { Tag = "div", variant, className } = props;
 
   const { allNews, getAllNews } = useNews();
   const [search, setSearch] = useState("");
-
+  const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(0);
   const [loading, setLoading] = useState(true);
+
+  const perPageResults = 10;
+  const totalPages = totalResults / perPageResults;
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -21,7 +26,8 @@ const NewsList = (props) => {
   const fetchNewsList = useCallback(
     async (config) => {
       setLoading(true);
-      await getAllNews(config);
+      const res = await getAllNews(config);
+      setTotalResults(res.totalResults);
       setLoading(false);
     },
     [getAllNews]
@@ -29,11 +35,18 @@ const NewsList = (props) => {
 
   const debounceFetch = useCallback(debounce(fetchNewsList, 600), []);
 
+  const handlePageClick = ({ selected }) => {
+    setPage(selected + 1);
+    window.scrollTo(0, 0);
+  };
+
   useEffect(() => {
     const config = {
       params: {
         q: search || "latest",
         from: "2022-11-21",
+        pageSize: 10,
+        page,
       },
     };
     if (search.length) {
@@ -41,7 +54,7 @@ const NewsList = (props) => {
     } else {
       fetchNewsList(config);
     }
-  }, [search]);
+  }, [search, page]);
 
   return (
     <Tag
@@ -61,13 +74,32 @@ const NewsList = (props) => {
       </div>
       <div className="list">
         {loading ? (
-          <>Loading...</>
+          <>
+            <NewsItemLoader className="news-item-loader" />
+            <NewsItemLoader className="news-item-loader" />
+            <NewsItemLoader className="news-item-loader" />
+            <NewsItemLoader className="news-item-loader" />
+          </>
         ) : (
           <>
             {allNews.map((newsItem) => (
-              <NewsItem news={newsItem} className="list-item" />
+              <NewsItem
+                key={newsItem.url}
+                news={newsItem}
+                className="list-item"
+              />
             ))}
           </>
+        )}
+        {!!allNews.length && (
+          <Pagination
+            breakLabel="..."
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageCount={totalPages}
+            previousLabel="<"
+            renderOnZeroPageCount={null}
+          />
         )}
       </div>
     </Tag>

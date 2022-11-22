@@ -6,7 +6,7 @@ import { fetchTopNews } from "features/news/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { topNewsSelector } from "features/news/selectors";
 
-import NewsItem from "components/news/NewsItem";
+import NewsItem, { NewsItemLoader } from "components/news/NewsItem";
 
 const TopNews = (props) => {
   const { Tag = "div", variant, className } = props;
@@ -18,7 +18,6 @@ const TopNews = (props) => {
   const handleCountry = (e) => {
     setCountry(e.target.value);
   };
-
 
   const getTopNews = async () => {
     setLoading(true);
@@ -42,21 +41,30 @@ const TopNews = (props) => {
       } ${className}`}
     >
       <div className="filter">
-          <select value={country} onChange={handleCountry}>
-            <option value="us">United States</option>
-            <option value="it">Italy</option>
-            <option value="gb">UK</option>
-            <option value="de">Germany</option>
-            <option value="in">India</option>
-          </select>
-        </div>
+        <select value={country} onChange={handleCountry}>
+          <option value="us">United States</option>
+          <option value="it">Italy</option>
+          <option value="gb">United Kingdom</option>
+          <option value="de">Germany</option>
+          <option value="in">India</option>
+        </select>
+      </div>
       <div className="list">
         {loading ? (
-          <>Loading...</>
+          <>
+            <NewsItemLoader className={"news-item-loader"} />
+            <NewsItemLoader className={"news-item-loader"} />
+            <NewsItemLoader className={"news-item-loader"} />
+            <NewsItemLoader className={"news-item-loader"} />
+          </>
         ) : (
           <>
             {news.map((newsItem) => (
-              <NewsItem news={newsItem} className="list-item" />
+              <NewsItem
+                key={newsItem.url}
+                news={newsItem}
+                className="list-item"
+              />
             ))}
           </>
         )}

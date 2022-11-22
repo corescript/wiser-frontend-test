@@ -1,0 +1,14 @@
+@use "styles/shared" as *;
+
+.Button {
+  cursor: pointer;
+  border-radius: 0;
+  background: none;
+  padding: 10px 20px;
+  border: 2px solid $dark;
+}
+
+.Button__default {
+  :global {
+  }
+}

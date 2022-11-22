@@ -11,7 +11,7 @@ const useNews = (props) => {
     setLoading(true);
     const res = await dispatch(fetchAllNews(config)).unwrap();
     setLoading(false);
-    return res.data;
+    return res;
   };
   return {
     allNews,
