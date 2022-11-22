@@ -1,0 +1,18 @@
+@use "styles/shared" as *;
+
+.PageLoader {
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  :global {
+    img {
+      width: 100px;
+    }
+  }
+}
+
+.PageLoader__default {
+  :global {
+  }
+}

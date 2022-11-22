@@ -1,9 +1,8 @@
 import React from "react";
-import NewsList from "components/news/NewsList";
-import MainLayout from "layouts/MainLayout";
+import AppRouter from "router";
 
 function App() {
-  return <div className="App"></div>;
+  return <AppRouter />;
 }
 
 export default App;

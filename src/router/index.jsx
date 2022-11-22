@@ -14,21 +14,19 @@ import MainLayout from "layouts/MainLayout";
  */
 
 import Home from "pages/Home";
-import Search from "pages/Search";
-// import Home from "pages/Home";
 
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
 const routes = [
   {
-    path: "/",
-    component: Home,
+    path: "/search",
+    component: React.lazy(() => import("pages/Search")),
     layout: MainLayout,
   },
   {
-    path: "/search",
-    component: Search,
+    path: "/",
+    component: Home,
     layout: MainLayout,
   },
 ];

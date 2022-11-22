@@ -21,6 +21,7 @@ const NewsList = (props) => {
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
+    setPage(1)
   };
 
   const fetchNewsList = useCallback(

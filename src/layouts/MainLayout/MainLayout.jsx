@@ -1,5 +1,7 @@
 import Navbar from "components/generic/Navbar";
+import PageLoader from "components/generic/PageLoader";
 import PropTypes from "prop-types";
+import { Suspense } from "react";
 import styles from "./MainLayout.module.scss";
 
 const MainLayout = (props) => {
@@ -13,7 +15,9 @@ const MainLayout = (props) => {
       <header>
         <Navbar />
       </header>
-      <main>{props.children}</main>
+      <main>
+        <Suspense fallback={<PageLoader />}>{props.children}</Suspense>
+      </main>
       <footer></footer>
     </Tag>
   );
