@@ -21,7 +21,7 @@ const NewsList = (props) => {
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    setPage(1)
+    setPage(1);
   };
 
   const fetchNewsList = useCallback(
@@ -83,13 +83,17 @@ const NewsList = (props) => {
           </>
         ) : (
           <>
-            {allNews.map((newsItem) => (
-              <NewsItem
-                key={newsItem.url}
-                news={newsItem}
-                className="list-item"
-              />
-            ))}
+            {allNews.length ? (
+              allNews.map((newsItem) => (
+                <NewsItem
+                  key={newsItem.url}
+                  news={newsItem}
+                  className="list-item"
+                />
+              ))
+            ) : (
+              <div className="no-result">Sorry, We couldn't find anything!</div>
+            )}
           </>
         )}
         {!!allNews.length && (
